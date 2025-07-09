@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمال | اسم المونتير</title>
+    
+    <!-- Google Fonts: لاستيراد خط عصري واحترافي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome: لأيقونة التشغيل -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <style>
+        /* --- [ الإعدادات الأساسية والهوية الاحترافية ] --- */
+        :root {
+            --primary-bg: #0D0D0D;      /* أسود شبه كامل للعمق */
+            --secondary-bg: #1A1A1A;    /* رمادي داكن جداً للحاويات */
+            --accent-color: #00A9FF;    /* أزرق كهربائي حاد (شبيه بسوني) */
+            --accent-hover: #38bfff;  
+            --text-primary: #F0F0F0;    /* أبيض-رمادي فاتح للنصوص */
+            --text-secondary: #AAAAAA;  /* رمادي للوصف والتفاصيل */
+            --border-color: rgba(0, 169, 255, 0.15); /* لون حدود خافت ومتوهج */
+            --shadow-color: rgba(0, 169, 255, 0.4);
+            --font-main: 'Tajawal', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary-bg);
+            /* إضافة طبقة بنمط خطوط رقمية خفيفة جداً فوق الخلفية */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* تغيير لملاءمة المحتوى الطويل */
+            min-height: 100vh;
+            padding: 4rem 1.5rem;
+            overflow-x: hidden;
+        }
+        
+        /* --- [ الحاوية الرئيسية ] --- */
+        .portfolio-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: transparent; /* الحاوية شفافة لتظهر الخلفية الرقمية */
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* تأخير الظهور المتسلسل للعناصر */
+        header.fade-in-up { animation-delay: 0.2s; }
+        #about.fade-in-up { animation-delay: 0.4s; }
+        #works.fade-in-up { animation-delay: 0.6s; }
+        
+
+        /* --- [ الهيدر والمعلومات الشخصية ] --- */
+        header {
+            margin-bottom: 4rem;
+        }
+
+        .profile-picture {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            object-fit: cover;
+            box-shadow: 0 0 25px var(--shadow-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* --- [ الأقسام (نبذة، أعمال) ] --- */
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        /* خط سفلي احترافي */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .about-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        /* --- [ شبكة الأعمال (الأهم) ] --- */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .work-card {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden; /* لإخفاء أي زوائد من الصورة عند التكبير */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: right;
+        }
+
+        .work-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .thumbnail-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .thumbnail-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .work-card:hover .thumbnail-img {
+            transform: scale(1.1); /* تأثير الزوم عند المرور */
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* يبدأ مخفياً */
+            transition: opacity 0.4s ease;
+        }
+        
+        .work-card:hover .video-overlay {
+            opacity: 1; /* يظهر عند المرور */
+        }
+
+        .play-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .work-card:hover .play-icon {
+            transform: scale(1);
+        }
+
+        .work-info {
+            padding: 1.25rem;
+        }
+
+        .work-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .work-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* --- [ التصميم المتجاوب للموبايل ] --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 2.5rem 1rem;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .profile-picture { width: 130px; height: 130px; }
+            .works-grid {
+                grid-template-columns: 1fr; /* عمود واحد فقط على الموبايل */
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="portfolio-container">
+        
+        <header class="fade-in-up">
+            <!-- غيّر الرابط إلى صورتك الشخصية -->
+            <img src="https://via.placeholder.com/160/222222/00A9FF?text=You" alt="صورة المونتير" class="profile-picture">
+            <h1>اسم المونتير</h1>
+            <p class="job-title">مونتير ومخرج فيديوهات</p>
+        </header>
+
+        <section id="about" class="about-section fade-in-up">
+            <h2>رؤيتي الفنية</h2>
+            <p>
+                متخصص في فن المونتاج وتحويل اللقطات الخام إلى قصة بصرية مؤثرة. أؤمن بأن كل إطار هو فرصة لإيصال شعور، وكل قطع هو إيقاع يضبط نبض الحكاية. أبحث دائمًا عن الجمال في التفاصيل الدقيقة لخلق أعمال احترافية لا تُنسى.
+            </p>
+        </section>
+
+        <section id="works" class="works-section fade-in-up">
+            <h2>أعمالي</h2>
+            
+            <div class="works-grid">
+                
+                <!-- البطاقة الأولى -->
+                <article class="work-card">
+                    <a href="#" target="_blank" class="thumbnail-container">
+                        <!-- غير الرابط لصورة مصغرة من عملك -->
+                        <img src="https://via.placeholder.com/400x225/111/fff?text=فيديو+سينمائي" alt="صورة مصغرة لمشروع فيديو سينمائي" class="thumbnail-img">
+                        <div class="video-overlay">
+                            <i class="fas fa-play play-icon"></i>
+                        </div>
+                    </a>
+                    <div class="work-info">
+                        <h3>فيديو سينمائي قصير "ظل"</h3>
+                        <p>مونتاج وإخراج فيلم قصير يستكشف مفاهيم النور والظلام من خلال تكوينات بصرية قوية.</p>
+                    </div>
+                </article>
+
+                <!-- البطاقة الثانية -->
+                <article class="work-card">
+                    <a href="#" target="_blank" class="thumbnail-container">
+                         <!-- غير الرابط لصورة مصغرة من عملك -->
+                        <img src="https://via.placeholder.com/400x225/333/fff?text=إعلان+تجاري" alt="صورة مصغرة لمشروع إعلان تجاري" class="thumbnail-img">
+                        <div class="video-overlay">
+                            <i class="fas fa-play play-icon"></i>
+                        </div>
+                    </a>
+                    <div class="work-info">
+                        <h3>إعلان تجاري لعلامة "إيقاع"</h3>
+                        <p>مونتاج إعلان لمنتج جديد، يعتمد على الإيقاع السريع والموسيقى المتزامنة مع حركة الصورة.</p>
+                    </div>
+                </article>
+
+                <!-- البطاقة الثالثة -->
+                <article class="work-card">
+                    <a href="#" target="_blank" class="thumbnail-container">
+                        <!-- غير الرابط لصورة مصغرة من عملك -->
+                        <img src="https://via.placeholder.com/400x225/222/fff?text=فيديو+موسيقي" alt="صورة مصغرة لمشروع فيديو موسيقي" class="thumbnail-img">
+                        <div class="video-overlay">
+                            <i class="fas fa-play play-icon"></i>
+                        </div>
+                    </a>
+                    <div class="work-info">
+                        <h3>فيديو كليب "أضواء المدينة"</h3>
+                        <p>عمل يدمج بين لقطات ليلية ساحرة ومونتاج مبتكر يبرز الحالة الشعورية للأغنية.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
