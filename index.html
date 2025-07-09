@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيرة ذاتية | اسمك الكامل</title>
+
+    <!-- Google Fonts: Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome: For Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-light: #1E1E1E;
+            --accent: #00A9FF;
+            --accent-light: #66cfff;
+            --text-primary: #EAEAEA;
+            --text-secondary: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Tajawal', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 3rem 1.5rem;
+            overflow-x: hidden;
+        }
+
+        /* --- Main CV Container --- */
+        .cv-container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            background-color: var(--bg-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            overflow: hidden; /* Important for border-radius */
+        }
+        
+        /* --- Animation --- */
+        @keyframes slideInRight { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fillBar { from { width: 0; } }
+
+        /* --- Sidebar (Right Column) --- */
+        .sidebar {
+            background-color: rgba(0,0,0,0.2);
+            padding: 2.5rem 2rem;
+            width: 35%;
+            min-width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 20px rgba(0, 169, 255, 0.5);
+        }
+
+        .sidebar h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .sidebar .title {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-section {
+            text-align: right;
+            margin-bottom: 2.5rem;
+        }
+
+        .sidebar-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .contact-list, .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .contact-list i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-left: 1rem; /* RTL margin */
+            width: 25px;
+            text-align: center;
+        }
+        
+        .skills-list li {
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .skill-bar {
+            background-color: rgba(255,255,255,0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            animation: fillBar 1.5s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: auto; /* Pushes button to the bottom */
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+        
+        .cta-button i {
+            margin-left: 0.5rem;
+        }
+
+        /* --- Main Content (Left Column) --- */
+        .main-content {
+            padding: 3rem 2.5rem;
+            width: 65%;
+            animation: slideInLeft 0.8s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .main-section {
+            margin-bottom: 3rem;
+        }
+
+        .main-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .main-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-right: 2rem; /* Space for the line */
+        }
+        
+        .timeline::before { /* The vertical line */
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 0;
+            width: 3px;
+            height: calc(100% - 10px);
+            background-color: var(--border);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item::before { /* The dot on the line */
+            content: '';
+            position: absolute;
+            top: 7px;
+            right: -8.5px; /* (dot width / 2) + (line width / 2) */
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 4px solid var(--bg-light);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .timeline-company {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .timeline-details {
+            padding-top: 0.8rem;
+            padding-right: 1.5rem;
+            color: var(--text-secondary);
+            list-style-type: '–  ';
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .cv-container {
+                flex-direction: column;
+            }
+            .sidebar, .main-content {
+                width: 100%;
+            }
+            .sidebar {
+                min-width: unset;
+                animation: slideInRight 0; /* Reset animation for better stacking */
+            }
+             .main-content {
+                animation: slideInLeft 0;
+            }
+        }
+         @media (max-width: 480px) {
+            body { padding: 1.5rem 1rem; }
+            .sidebar, .main-content { padding: 2rem 1.5rem; }
+            .sidebar h1 { font-size: 1.8rem; }
+            .main-content h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-container">
+    <!-- ============== RIGHT COLUMN: SIDEBAR ============== -->
+    <aside class="sidebar">
+        <!-- غير هذا الرابط إلى صورتك الشخصية -->
+        <img src="https://via.placeholder.com/150/1E1E1E/00A9FF?text=CV" alt="صورة شخصية" class="profile-pic">
+        <h1>اسمك الكامل</h1>
+        <p class="title">مونتير | مخرج فيديوهات</p>
+
+        <!-- معلومات الاتصال -->
+        <section class="sidebar-section">
+            <h2>اتصل بي</h2>
+            <ul class="contact-list">
+                <li><i class="fas fa-phone"></i><span>+123 456 7890</span></li>
+                <li><i class="fas fa-envelope"></i><span>email@example.com</span></li>
+                <li><i class="fas fa-map-marker-alt"></i><span>القاهرة، مصر</span></li>
+                <li><i class="fas fa-globe"></i><span>yourportfolio.com</span></li>
+            </ul>
+        </section>
+
+        <!-- المهارات -->
+        <section class="sidebar-section">
+            <h2>المهارات</h2>
+            <ul class="skills-list">
+                <li>
+                    <div class="skill-name"><span>Adobe Premiere Pro</span><span>95%</span></div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div>
+                </li>
+                <li>
+                    <div class="skill-name"><span>After Effects</span><span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+                </li>
+                 <li>
+                    <div class="skill-name"><span>DaVinci Resolve</span><span>80%</span></div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                </li>
+                <li>
+                    <div class="skill-name"><span>Storytelling</span><span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- زر التحميل -->
+        <a href="#" class="cta-button" download><i class="fas fa-download"></i>تحميل الـ CV</a>
+    </aside>
+
+    <!-- ============== LEFT COLUMN: MAIN CONTENT ============== -->
+    <main class="main-content">
+        <!-- النبذة الشخصية -->
+        <section class="main-section">
+            <h2>نبذة احترافية</h2>
+            <p>مونتير مبدع وشغوف، أمتلك خبرة تتجاوز 5 سنوات في تحويل المشاهد المصورة إلى قصص بصرية متكاملة ومؤثرة. متخصص في مونتاج الفيديوهات السينمائية والإعلانات التجارية والفيديو كليب، مع قدرة عالية على التعامل مع برامج المونتاج الرائدة واستيعاب رؤية العميل وتحويلها إلى واقع ملموس.</p>
+        </section>
+
+        <!-- الخبرة العملية -->
+        <section class="main-section">
+            <h2>الخبرة العملية</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p class="timeline-date">2020 - حتى الآن</p>
+                    <h3 class="timeline-title">مونتير أول <span class="timeline-company">@ ستوديو إبداع</span></h3>
+                    <ul class="timeline-details">
+                        <li>قيادة فريق المونتاج في المشاريع الكبرى.</li>
+                        <li>مونتاج وإخراج الحملات الإعلانية الرئيسية للعملاء.</li>
+                        <li>تطوير القوالب البصرية والمكتبة الرسومية للشركة.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">2018 - 2020</p>
+                    <h3 class="timeline-title">مونتير فيديو <span class="timeline-company">@ وكالة الرؤية</span></h3>
+                    <ul class="timeline-details">
+                        <li>مونتاج مقاطع الفيديو الخاصة بمواقع التواصل الاجتماعي.</li>
+                        <li>العمل على تصحيح الألوان والمؤثرات البصرية البسيطة.</li>
+                        <li>التعاون مع فريق التسويق لإنتاج محتوى جذاب.</li>
+                    </ul>
+                </div>
+                 <div class="timeline-item">
+                    <p class="timeline-date">2017 - 2018</p>
+                    <h3 class="timeline-title">متدرب مونتاج <span class="timeline-company">@ قناة الحدث</span></h3>
+                    <ul class="timeline-details">
+                        <li>المساعدة في تحضير وتقطيع المواد الخام.</li>
+                        <li>تعلم أسس المونتاج التلفزيوني والإخباري.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- التعليم -->
+         <section class="main-section">
+            <h2>التعليم</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p class="timeline-date">2013 - 2017</p>
+                    <h3 class="timeline-title">بكالوريوس فنون تطبيقية <span class="timeline-company">@ جامعة الفنون</span></h3>
+                     <ul class="timeline-details">
+                        <li>التخصص في قسم الوسائط المتعددة.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
