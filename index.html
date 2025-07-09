@@ -1,147 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed's Portfolio</title>
-  <style>
-    :root {
-      --primary: #2d2e32;
-      --accent: #4ade80;
-      --text: #e5e7eb;
-      --bg: #1f1f1f;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف أعمال سحري | اسم المبرمج</title>
+    
+    <!-- Google Fonts: لاستيراد الخطوط الأنيقة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome: لأيقونة الفيديو -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <style>
+        /* --- [ الإعدادات الأساسية والهوية الجمالية ] --- */
+        :root {
+            --primary-color: #0a0a1a; /* أزرق ليلي داكن جداً */
+            --secondary-color: #1a1a2e; /* لون ثانوي للخلفية المتدرجة */
+            --card-bg-color: rgba(255, 255, 255, 0.05); /* لون البطاقات شبه شفاف */
+            --border-color: rgba(224, 194, 116, 0.2); /* لون الحدود الشفاف */
+            --text-color: #e0e0e0; /* لون النصوص الأساسي (ليس أبيض ناصع) */
+            --accent-color: #e0c274; /* لون ذهبي أنيق للتفاصيل */
+            --shadow-color: rgba(224, 194, 116, 0.5); /* لون الظل المتوهج */
+            --font-title: 'Amiri', serif; /* خط الروايات للعناوين */
+            --font-body: 'Cairo', sans-serif; /* خط عصري ومقروء للمحتوى */
+        }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 20px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      text-align: center;
-      padding: 2rem 0;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-    }
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            overflow-x: hidden; /* لمنع أي تحريك أفقي غير مرغوب */
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
+        /* --- [ الحاوية الرئيسية: بطاقة التعريف السحرية ] --- */
+        .portfolio-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px); /* تأثير الزجاج المصنفر (اللمسة السحرية) */
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+            animation: fadeInContainer 1s ease-out forwards;
+        }
 
-    header p {
-      font-size: 1.1rem;
-      color: #aaa;
-    }
+        /* --- [ الأنيميشن الرئيسي ] --- */
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
-    .about {
-      max-width: 700px;
-      margin: 2rem auto;
-      background-color: var(--primary);
-      padding: 1.5rem;
-      border-radius: 10px;
-    }
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .card {
-      background-color: var(--primary);
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
+        /* تأخير ظهور العناصر لإنشاء تسلسل سردي */
+        .profile-picture { animation-delay: 0.2s; }
+        h1 { animation-delay: 0.4s; }
+        .job-title { animation-delay: 0.6s; }
+        .about-section h2 { animation-delay: 0.8s; }
+        .about-section p { animation-delay: 1s; }
+        .works-section h2 { animation-delay: 1.2s; }
+        .card { animation-delay: 1.4s; }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
 
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
+        /* --- [ الهيدر والصورة الشخصية ] --- */
+        header {
+            margin-bottom: 2rem;
+        }
 
-    .card p {
-      font-size: 0.95rem;
-      color: #ccc;
-    }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            object-fit: cover;
+            box-shadow: 0 0 20px var(--shadow-color);
+            animation: fadeInContainer 1s ease-out forwards, pulseGlow 3s infinite ease-in-out;
+            animation-delay: 0.2s;
+        }
 
-    .contact {
-      max-width: 700px;
-      margin: 3rem auto;
-      text-align: center;
-    }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px var(--shadow-color); }
+            50% { box-shadow: 0 0 35px var(--shadow-color); }
+            100% { box-shadow: 0 0 20px var(--shadow-color); }
+        }
 
-    .contact a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: bold;
-    }
+        h1 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-top: 1rem;
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #666;
-    }
-  </style>
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        /* --- [ قسم النبذة والأعمال ] --- */
+        section {
+            margin-top: 3rem;
+        }
+
+        h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        /* خط زخرفي تحت عناوين الأقسام */
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 0.5rem auto 0;
+            border-radius: 3px;
+            opacity: 0.7;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- [ بطاقات الأعمال ] --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(224, 194, 116, 0.5);
+        }
+
+        .card h3 {
+            font-family: var(--font-title);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .video-link:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .video-link .fas {
+            font-size: 1.2rem;
+        }
+        
+        /* --- [ التصميم المتجاوب (Responsive) ] --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .portfolio-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            .profile-picture { width: 120px; height: 120px; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="https://via.placeholder.com/150" alt="Profile Picture">
-    <h1>Mohamed Ragab</h1>
-    <p>Web Developer | Designer | Creative Thinker</p>
-  </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>
-      I'm Mohamed, a passionate developer with an eye for design and details. I build responsive and user-friendly websites, and I love turning ideas into reality using code.
-    </p>
-  </section>
+    <main class="portfolio-container">
+        
+        <header>
+            <!-- الصورة الشخصية: غير الرابط لرابط صورتك -->
+            <img src="https://via.placeholder.com/150" alt="صورة المبرمج الشخصية" class="profile-picture fade-in-up">
+            
+            <h1 class="fade-in-up">اسم المبرمج</h1>
+            <p class="job-title fade-in-up">مصمم تجربة المستخدم ومطور الواجهات الأمامية</p>
+        </header>
 
-  <section class="projects">
-    <div class="card">
-      <h3>Landing Page</h3>
-      <p>A clean and modern landing page template built with HTML & CSS.</p>
-    </div>
-    <div class="card">
-      <h3>Blog Template</h3>
-      <p>Minimalistic blog layout perfect for developers and writers.</p>
-    </div>
-    <div class="card">
-      <h3>Gallery Grid</h3>
-      <p>Responsive photo gallery using CSS Grid and Flexbox.</p>
-    </div>
-  </section>
+        <section id="about" class="about-section">
+            <h2 class="fade-in-up">نبذة عني</h2>
+            <p class="fade-in-up">
+                مبرمج شغوف بتحويل الأفكار المعقدة إلى تجارب رقمية بسيطة وجميلة. أؤمن بأن الكود النظيف والتصميم الأنيق يمكنهما معًا خلق عوالم جديدة. هنا، كل مشروع هو قصة، وكل سطر كود هو كلمة في تلك القصة.
+            </p>
+        </section>
 
-  <section class="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:mohamed@example.com">mohamed@example.com</a></p>
-  </section>
+        <section id="works" class="works-section">
+            <h2 class="fade-in-up">أعمالي</h2>
+            
+            <div class="cards-grid">
+                
+                <!-- البطاقة الأولى -->
+                <article class="card fade-in-up">
+                    <h3>مشروع "البوابة النجمية"</h3>
+                    <p>
+                        لوحة تحكم تفاعلية لعرض بيانات الفضاء في الزمن الحقيقي، مصممة بواجهة مستقبلية وغامضة.
+                    </p>
+                    <a href="#" class="video-link" target="_blank">
+                        <i class="fas fa-play-circle"></i>
+                        <span>شاهد الفيديو</span>
+                    </a>
+                </article>
 
-  <footer>
-    <p>&copy; 2025 Mohamed Ragab. All rights reserved.</p>
-  </footer>
+                <!-- البطاقة الثانية -->
+                <article class="card fade-in-up">
+                    <h3>تطبيق "حكواتي"</h3>
+                    <p>
+                        تطبيق جوال يروي القصص التراثية العربية باستخدام الرسوم المتحركة والصوتيات التفاعلية.
+                    </p>
+                    <a href="#" class="video-link" target="_blank">
+                        <i class="fas fa-play-circle"></i>
+                        <span>شاهد الفيديو</span>
+                    </a>
+                </article>
+
+                <!-- البطاقة الثالثة -->
+                <article class="card fade-in-up">
+                    <h3>متجر "الخيميائي"</h3>
+                    <p>
+                        تجربة تسوق إلكترونية فريدة، حيث كل منتج يعرض وكأنه قطعة أثرية لها تاريخها الخاص.
+                    </p>
+                    <a href="#" class="video-link" target="_blank">
+                        <i class="fas fa-play-circle"></i>
+                        <span>شاهد الفيديو</span>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>
